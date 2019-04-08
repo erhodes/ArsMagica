@@ -1,0 +1,50 @@
+<resources>
+    <string name="app_name">ArsMagica</string>
+
+    <string name="characteristics">Characteristics</string>
+    <string name="increase">Increase</string>
+    <string name="decrease">Decrease</string>
+
+    <string name="strength">Strength</string>
+    <string name="dexterity">Dexterity</string>
+    <string name="quickness">Quickness</string>
+    <string name="stamina">Stamina</string>
+    <string name="intelligence">Intelligence</string>
+    <string name="perception">Perception</string>
+    <string name="presence">Presence</string>
+    <string name="communication">Communication</string>
+
+    <string name="spells">Spells</string>
+    <string name="cast">Cast</string>
+
+    <string name="spell_total_summary">%s %d %s %d Stamina %d</string>
+
+    <string name="cast_success">Success! Roll: %d Cast Total: %d with Penetration %d.</string>
+    <string name="cast_partial_success">Partial Success! Roll: %d Cast Total: %d, lose 1 fatigue.</string>
+    <string name="cast_failure">Failed! Rolled %d.</string>
+
+    <string name="abilities">Abilities</string>
+    <string name="finesse">Finesse</string>
+    <string name="penetration">Penetration</string>
+
+    <string name="magic">Magic</string>
+    <string name="arts">Arts</string>
+
+    <string name="creo">Creo</string>
+    <string name="intellego">Intellego</string>
+    <string name="muto">Muto</string>
+    <string name="perdo">Perdo</string>
+    <string name="rego">Rego</string>
+
+    <string name="animal">Animal</string>
+    <string name="aquam">Aquam</string>
+    <string name="auram">Auram</string>
+    <string name="corpus">Corpus</string>
+    <string name="herbam">Herbam</string>
+    <string name="ignem">Ignem</string>
+    <string name="imaginem">Imaginem</string>
+    <string name="mentem">Mentem</string>
+    <string name="terram">terram</string>
+    <string name="vim">Vim</string>
+
+</resources>
