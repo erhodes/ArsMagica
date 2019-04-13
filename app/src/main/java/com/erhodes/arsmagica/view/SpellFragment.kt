@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.TextView
 import com.erhodes.arsmagica.ArsMagicaApplication
 import com.erhodes.arsmagica.R
@@ -21,6 +22,8 @@ class SpellFragment : BaseFragment() {
     private lateinit var character: Character
     private lateinit var spell: Spell
     private var resultView: TextView? = null
+    private var castButton: Button? = null
+    private var castPenalty: Int = 0
 
     companion object {
         val ARG_SPELL: String = "arg_spell"
@@ -43,7 +46,7 @@ class SpellFragment : BaseFragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater?.inflate(R.layout.fragment_spell, container, false)
+        val view = inflater.inflate(R.layout.fragment_spell, container, false)
 
         val nameView = view?.findViewById<TextView>(R.id.titleView)
         nameView?.text = spell.name
@@ -58,17 +61,33 @@ class SpellFragment : BaseFragment() {
                 character.getArtValue(spell.form),
                 character.getCharacteristicValue(StatEnum.STAMINA))
 
+        val fastcastBox: CheckBox? = view?.findViewById(R.id.checkBox)
+        fastcastBox?.setOnCheckedChangeListener {
+            _, isChecked ->
+            if (isChecked) {
+                castPenalty = 10
+            } else {
+                castPenalty = 0
+            }
+            updateCastButton()
+        }
+
         resultView = view?.findViewById(R.id.resultView)
-        val castButton = view?.findViewById<Button>(R.id.castButton)
+        castButton = view?.findViewById<Button>(R.id.castButton)
         castButton?.setOnClickListener(View.OnClickListener {
             castSpell()
         })
+        updateCastButton()
 
         return view;
     }
 
+    private fun updateCastButton() {
+        castButton?.text = getString(R.string.cast_button, spell.getCastingValue(character) - castPenalty)
+    }
+
     private fun castSpell() {
-        val castResult = characterRepository.castSpell(character, spell)
+        val castResult = characterRepository.castSpell(character, spell, castPenalty)
         var resultString: String = ""
         when(castResult.result) {
             0 -> resultString = getString(R.string.cast_success, castResult.roll, castResult.total, castResult.penetration)

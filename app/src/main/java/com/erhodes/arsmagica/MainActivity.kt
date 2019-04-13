@@ -8,6 +8,7 @@ import com.erhodes.arsmagica.model.Spell
 import com.erhodes.arsmagica.view.CharacterFragment
 import com.erhodes.arsmagica.view.MagicFragment
 import com.erhodes.arsmagica.view.SpellFragment
+import com.erhodes.arsmagica.view.SpontaneousFragment
 
 class MainActivity : FragmentActivity() {
 
@@ -33,6 +34,10 @@ class MainActivity : FragmentActivity() {
 
     public fun launchMagicFragment() {
         addFragment(MagicFragment.newInstance())
+    }
+
+    fun launchSpontaneousMagicFragment() {
+        addFragment(SpontaneousFragment())
     }
 
     fun addFragment(fragment: Fragment) {

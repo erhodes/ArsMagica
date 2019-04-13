@@ -48,7 +48,12 @@ class MagicFragment: BaseFragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater?.inflate(R.layout.fragment_magic, container, false)
+        val view = inflater.inflate(R.layout.fragment_magic, container, false)
+
+        val spontaneousButton: Button = view.findViewById(R.id.button3)
+        spontaneousButton.setOnClickListener {
+            mainActivity.launchSpontaneousMagicFragment()
+        }
 
         artManager = LinearLayoutManager(context)
         artViewAdapter = CharacterFragment.StatAdapter(character.arts.values.toTypedArray(), context, characterRepository)

@@ -23,6 +23,17 @@ class Character {
         addArt(StatEnum.IGNEM, 15)
         addArt(StatEnum.TERRAM, 20)
 
+        addArt(StatEnum.ANIMAL, 5)
+        addArt(StatEnum.AQUAM, 5)
+        addArt(StatEnum.AURAM, 5)
+        addArt(StatEnum.CORPUS, 5)
+        addArt(StatEnum.HERBAM, 5)
+        addArt(StatEnum.IGNEM, 5)
+        addArt(StatEnum.IMAGINEM, 5)
+        addArt(StatEnum.MENTEM, 5)
+        addArt(StatEnum.TERRAM, 5)
+        addArt(StatEnum.VIM, 5)
+
         addSpell(Spell("Unseen Porter", 10, "Levitate something", StatEnum.REGO, StatEnum.TERRAM))
         addSpell(Spell("Firebolt", 15, "Fire spell that deals +10 damage at voice range", StatEnum.CREO, StatEnum.IGNEM))
     }

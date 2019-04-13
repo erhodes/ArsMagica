@@ -32,11 +32,11 @@ class CharacterRepository {
         characterLiveData.postValue(mCharacter)
     }
 
-    public fun castSpell(caster: Character, spell: Spell): CastResult {
+    public fun castSpell(caster: Character, spell: Spell, penalty: Int): CastResult {
         val roll = (0..9).shuffled().first()
         Log.d("Eric","rolled a " + roll)
 
-        var total: Int = roll + spell.getCastingValue(caster)
+        var total: Int = roll + spell.getCastingValue(caster) - penalty
         var penetration: Int = spell.getPenetrationBonus(caster)
 
         var result: Int
@@ -51,6 +51,4 @@ class CharacterRepository {
         }
         return CastResult(result, roll, total, penetration)
     }
-
-    class CastResult(val result: Int, val roll: Int, val total: Int, val penetration: Int)
 }

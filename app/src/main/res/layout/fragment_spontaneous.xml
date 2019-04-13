@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/technique"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RadioGroup
+        android:id="@+id/techniqueGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checkedButton="@id/creo"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" >
+        <RadioButton
+            android:id="@+id/creo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/creo" />
+        <RadioButton
+            android:id="@+id/intellego"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/intellego" />
+        <RadioButton
+            android:id="@+id/muto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/muto" />
+        <RadioButton
+            android:id="@+id/perdo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/perdo" />
+        <RadioButton
+            android:id="@+id/rego"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/rego" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/summaryView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/cast"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/techniqueGroup" />
+
+    <RadioGroup
+        android:id="@+id/formGroup"
+        android:checkedButton="@id/animal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" >
+        <RadioButton
+            android:id="@+id/animal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/animal" />
+        <RadioButton
+            android:id="@+id/aquam"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/aquam" />
+        <RadioButton
+            android:id="@+id/auram"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/auram" />
+        <RadioButton
+            android:id="@+id/corpus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/corpus" />
+        <RadioButton
+            android:id="@+id/herbam"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/herbam" />
+        <RadioButton
+            android:id="@+id/ignem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ignem" />
+        <RadioButton
+            android:id="@+id/imaginem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/imaginem" />
+        <RadioButton
+            android:id="@+id/mentem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/mentem" />
+        <RadioButton
+            android:id="@+id/terram"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/terram" />
+        <RadioButton
+            android:id="@+id/vim"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/vim" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/form"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <CheckBox
+        android:id="@+id/fastCastCheck"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/fast_cast"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/summaryView" />
+
+    <RadioGroup
+        android:id="@+id/modeGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:checkedButton="@id/spontaneous"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fastCastCheck">
+
+        <RadioButton
+            android:id="@+id/spontaneous"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/spontaneous" />
+
+        <RadioButton
+            android:id="@+id/fatigued"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fatigued" />
+
+        <RadioButton
+            android:id="@+id/diedne"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/diedne" />
+
+        <RadioButton
+            android:id="@+id/normal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/regular" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/castButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="@string/cast"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/modeGroup" />
+
+    <TextView
+        android:id="@+id/resultView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text=""
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/castButton" />
+
+
+</android.support.constraint.ConstraintLayout>

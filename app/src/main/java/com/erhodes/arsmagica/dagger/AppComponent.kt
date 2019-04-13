@@ -5,6 +5,7 @@ import com.erhodes.arsmagica.model.CharacterRepository
 import com.erhodes.arsmagica.view.CharacterFragment
 import com.erhodes.arsmagica.view.MagicFragment
 import com.erhodes.arsmagica.view.SpellFragment
+import com.erhodes.arsmagica.view.SpontaneousFragment
 import dagger.Component
 import javax.inject.Singleton
 
@@ -17,4 +18,5 @@ interface AppComponent {
     fun inject(fragment: CharacterFragment)
     fun inject(fragment: SpellFragment)
     fun inject(fragment: MagicFragment)
+    fun inject(fragment: SpontaneousFragment)
 }
