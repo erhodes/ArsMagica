@@ -18,10 +18,10 @@ class Character {
         addAbility(AbilityEnum.PENETRATION, 2)
 
         addArt(StatEnum.CREO, 10)
+        addArt(StatEnum.INTELLEGO, 20)
         addArt(StatEnum.MUTO, 5)
+        addArt(StatEnum.PERDO, 15)
         addArt(StatEnum.REGO, 10)
-        addArt(StatEnum.IGNEM, 15)
-        addArt(StatEnum.TERRAM, 20)
 
         addArt(StatEnum.ANIMAL, 5)
         addArt(StatEnum.AQUAM, 5)
