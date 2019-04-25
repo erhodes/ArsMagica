@@ -1,8 +1,11 @@
 package com.erhodes.arsmagica.model
 
+import android.os.Handler
+import android.os.HandlerThread
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.erhodes.arsmagica.room.AppDatabase
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -11,11 +14,30 @@ class CharacterRepository {
 
     var mCharacter: Character
     val characterLiveData: MutableLiveData<Character> = MutableLiveData()
+    val appDatabase: AppDatabase
+    val handler: Handler
 
     @Inject
-    constructor() {
+    constructor(database: AppDatabase) {
+        val handlerThread = HandlerThread("databaseThread")
+        handlerThread.start()
+        handler = Handler(handlerThread.looper)
+
         mCharacter = Character("Ferrus")
-        characterLiveData.postValue(mCharacter)
+
+        appDatabase = database
+        handler.post {
+//            saveCharacter(mCharacter)
+            if (appDatabase.characterDao().getAll().isEmpty()) {
+                Log.d("Eric", "initialize db")
+                mCharacter = Character("Ferrus")
+                saveCharacter(mCharacter)
+            } else {
+                Log.d("Eric", "loaded in a character")
+                mCharacter = appDatabase.characterDao().getAll()[0]
+            }
+            characterLiveData.postValue(mCharacter)
+        }
     }
 
     fun getCharacter(name: String): Character {
@@ -23,13 +45,31 @@ class CharacterRepository {
     }
 
     public fun increaseStat(stat: Stat) {
-        stat.score++
+
+        //todo make this work for things that aren't characteristics
+        val realStat = mCharacter.characteristics[stat.type]
+        if (realStat == null) {
+            Log.d("Eric","wtf")
+        } else {
+            Log.d("Eric","its " + realStat.score)
+            realStat.score++
+            Log.d("Eric","now its " + realStat.score)
+        }
+
+        mCharacter.characteristics[stat.type]?.score?.inc()
         characterLiveData.postValue(mCharacter)
+        saveCharacter(mCharacter)
     }
 
     public fun decreaseStat(stat: Stat) {
         stat.score--
         characterLiveData.postValue(mCharacter)
+    }
+
+    fun saveCharacter(character: Character) {
+        handler.post {
+            appDatabase.characterDao().insert(character)
+        }
     }
 
     public fun castSpell(caster: Character, spell: Spell, penalty: Int): CastResult {

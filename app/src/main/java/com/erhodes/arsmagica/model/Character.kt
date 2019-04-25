@@ -1,10 +1,19 @@
 package com.erhodes.arsmagica.model
 
+import androidx.room.Entity
+import androidx.room.Ignore
+import androidx.room.PrimaryKey
+
+@Entity
 class Character {
+    @PrimaryKey
     var name: String
     var characteristics: HashMap<StatEnum, Stat> = HashMap()
-    var abilities: HashMap<AbilityEnum, Ability> = HashMap()
+    @Ignore
+    var abilities: HashMap<StatEnum, Stat> = HashMap()
+    @Ignore
     val arts: HashMap<StatEnum, Stat> = HashMap()
+    @Ignore
     val spells: ArrayList<Spell> = ArrayList()
 
     constructor(name: String) {
@@ -12,10 +21,14 @@ class Character {
 
         addCharacteristic(StatEnum.STRENGTH, 1)
         addCharacteristic(StatEnum.DEXTERITY, 2)
+        addCharacteristic(StatEnum.QUICKNESS, 3)
         addCharacteristic(StatEnum.STAMINA, 3)
         addCharacteristic(StatEnum.COMMUNICATION, -1)
+        addCharacteristic(StatEnum.INTELLIGENCE, 3)
+        addCharacteristic(StatEnum.PERCEPTION, 2)
+        addCharacteristic(StatEnum.PRESENCE, 2)
 
-        addAbility(AbilityEnum.PENETRATION, 2)
+        addAbility(StatEnum.PENETRATION, 2)
 
         addArt(StatEnum.CREO, 10)
         addArt(StatEnum.INTELLEGO, 20)
@@ -54,11 +67,11 @@ class Character {
         return characteristics[attribute]?.score ?: 0
     }
 
-    fun addAbility(type: AbilityEnum, score: Int) {
-        abilities[type] = Ability(type, score)
+    fun addAbility(type: StatEnum, score: Int) {
+        abilities[type] = Stat(type, score)
     }
 
-    fun getAbilityValue(ability: AbilityEnum): Int {
+    fun getAbilityValue(ability: StatEnum): Int {
         return abilities[ability]?.score ?: 0
     }
 

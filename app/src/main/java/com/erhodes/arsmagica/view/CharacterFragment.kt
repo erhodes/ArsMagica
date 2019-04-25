@@ -23,7 +23,7 @@ class CharacterFragment : BaseFragment() {
     private var characteristicView: RecyclerView? = null
     private var abilityView: RecyclerView? = null
 
-    private lateinit var characteristicViewAdapter: RecyclerView.Adapter<*>
+    private lateinit var characteristicViewAdapter: StatAdapter
     private lateinit var characteristicViewManager: RecyclerView.LayoutManager
     private lateinit var abilityViewAdapter: RecyclerView.Adapter<StatViewHolder>
     private lateinit var abilityViewManager: RecyclerView.LayoutManager
@@ -34,12 +34,14 @@ class CharacterFragment : BaseFragment() {
 
         mCharacter = characterRepository.getCharacter("Ferrus")
         characterRepository.characterLiveData.observe(this, Observer {
-            characteristicViewAdapter.notifyDataSetChanged()
+            if (it != null) {
+                updateCharacter(it)
+            }
         })
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater?.inflate(R.layout.fragment_character, container, false);
+        val view = inflater.inflate(R.layout.fragment_character, container, false);
 
         val magicButton: Button? = view?.findViewById<Button?>(R.id.magicButton)
         magicButton?.setOnClickListener(View.OnClickListener {
@@ -62,7 +64,7 @@ class CharacterFragment : BaseFragment() {
             this?.adapter = characteristicViewAdapter
         }
 
-        abilityViewAdapter = AbilityAdapter(mCharacter.abilities.values.toTypedArray(), context)
+        abilityViewAdapter = StatAdapter(mCharacter.abilities.values.toTypedArray(), context, characterRepository)
         abilityViewManager = LinearLayoutManager(context)
 
         abilityView = view?.findViewById(R.id.abilityView)
@@ -75,9 +77,16 @@ class CharacterFragment : BaseFragment() {
         return view;
     }
 
+    private fun updateCharacter(character: Character) {
+        mCharacter = character
+        characteristicViewAdapter.myDataset = mCharacter.characteristics.values.toTypedArray()
+
+        characteristicViewAdapter.notifyDataSetChanged()
+    }
+
     class StatViewHolder(view: View, val titleView: TextView, val scoreView: TextView, val minusButton: Button, val plusButton: Button, val buttonGroup: Group) : RecyclerView.ViewHolder(view)
 
-    class StatAdapter(private val myDataset: Array<Stat>, private val context: Context?, private val charRepo: CharacterRepository) :
+    class StatAdapter(var myDataset: Array<Stat>, private val context: Context?, private val charRepo: CharacterRepository) :
             RecyclerView.Adapter<StatViewHolder>() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StatViewHolder {
@@ -114,28 +123,5 @@ class CharacterFragment : BaseFragment() {
         }
 
         override fun getItemCount() = myDataset.size
-    }
-
-    class AbilityAdapter(private val dataset: Array<Ability>, private val context: Context?) :
-            RecyclerView.Adapter<StatViewHolder>() {
-
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StatViewHolder {
-            val view = LayoutInflater.from(parent.context).inflate(R.layout.list_item_stat, parent, false)
-
-            val titleView = view.findViewById<TextView>(R.id.title)
-            val scoreView = view.findViewById<TextView>(R.id.score)
-            val buttonGroup = view.findViewById<Group>(R.id.buttonGroup)
-            val minusButton = view.findViewById<Button>(R.id.button)
-            val plusButton = view.findViewById<Button>(R.id.button2)
-
-            return StatViewHolder(view, titleView, scoreView, minusButton, plusButton, buttonGroup)
-        }
-
-        override fun onBindViewHolder(holder: StatViewHolder, position: Int) {
-            holder.titleView.text = context?.getString(dataset[position].type.resourceId)
-            holder.scoreView.text = dataset[position].score.toString()
-        }
-
-        override fun getItemCount() = dataset.size
     }
 }

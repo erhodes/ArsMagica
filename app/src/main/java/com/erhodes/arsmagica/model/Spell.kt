@@ -9,6 +9,6 @@ class Spell(val name: String, val level: Int, val description: String, val techn
     }
 
     fun getPenetrationBonus(caster: Character): Int {
-        return caster.getAbilityValue(AbilityEnum.PENETRATION)
+        return caster.getAbilityValue(StatEnum.PENETRATION)
     }
 }
