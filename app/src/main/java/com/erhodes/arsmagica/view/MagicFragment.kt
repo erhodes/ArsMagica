@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.erhodes.arsmagica.ArsMagicaApplication
@@ -27,7 +28,7 @@ class MagicFragment: BaseFragment() {
     private lateinit var character: Character
 
     private var artView: RecyclerView? = null
-    private lateinit var artViewAdapter: RecyclerView.Adapter<*>
+    private lateinit var artViewAdapter: CharacterFragment.StatAdapter
     private lateinit var artManager: RecyclerView.LayoutManager
 
     private var spellView: RecyclerView? = null
@@ -44,7 +45,12 @@ class MagicFragment: BaseFragment() {
         super.onAttach(context)
         ArsMagicaApplication.instance.appComponent.inject(this)
 
-        character = characterRepository.mCharacter
+        character = characterRepository.getCharacter("Ferrus")
+        characterRepository.characterLiveData.observe(this, Observer {
+            if (it != null) {
+                updateCharacter(it)
+            }
+        })
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -56,7 +62,7 @@ class MagicFragment: BaseFragment() {
         }
 
         artManager = LinearLayoutManager(context)
-        artViewAdapter = CharacterFragment.StatAdapter(character.arts.values.toTypedArray(), context, characterRepository)
+        artViewAdapter = CharacterFragment.StatAdapter(character.getArts(), context, characterRepository)
 
         artView = view?.findViewById(R.id.artView)
         artView.apply {
@@ -77,6 +83,12 @@ class MagicFragment: BaseFragment() {
         }
 
         return view;
+    }
+
+    private fun updateCharacter(character: Character) {
+        this.character = character
+        artViewAdapter.myDataset = character.getArts()
+        artViewAdapter.notifyDataSetChanged()
     }
 
     class SpellViewHolder(view: View, val titleView: TextView, val scoreView: TextView) : RecyclerView.ViewHolder(view)

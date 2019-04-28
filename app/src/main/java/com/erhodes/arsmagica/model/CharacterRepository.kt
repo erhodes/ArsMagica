@@ -45,18 +45,7 @@ class CharacterRepository {
     }
 
     public fun increaseStat(stat: Stat) {
-
-        //todo make this work for things that aren't characteristics
-        val realStat = mCharacter.characteristics[stat.type]
-        if (realStat == null) {
-            Log.d("Eric","wtf")
-        } else {
-            Log.d("Eric","its " + realStat.score)
-            realStat.score++
-            Log.d("Eric","now its " + realStat.score)
-        }
-
-        mCharacter.characteristics[stat.type]?.score?.inc()
+        mCharacter.stats[stat.type.ordinal].score++
         characterLiveData.postValue(mCharacter)
         saveCharacter(mCharacter)
     }

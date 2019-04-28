@@ -25,7 +25,7 @@ class CharacterFragment : BaseFragment() {
 
     private lateinit var characteristicViewAdapter: StatAdapter
     private lateinit var characteristicViewManager: RecyclerView.LayoutManager
-    private lateinit var abilityViewAdapter: RecyclerView.Adapter<StatViewHolder>
+    private lateinit var abilityViewAdapter: StatAdapter
     private lateinit var abilityViewManager: RecyclerView.LayoutManager
 
     override fun onAttach(context: Context?) {
@@ -52,10 +52,8 @@ class CharacterFragment : BaseFragment() {
         nameView?.text = mCharacter.name
 
         characteristicViewManager = LinearLayoutManager(context)
-        val stuff = mCharacter.characteristics.values.toTypedArray()
-        Log.d("Eric","characteristics " + stuff.size)
 
-        characteristicViewAdapter = StatAdapter(mCharacter.characteristics.values.toTypedArray(), context, characterRepository)
+        characteristicViewAdapter = StatAdapter(mCharacter.getCharacteristics(), context, characterRepository)
 
         characteristicView = view?.findViewById(R.id.characteristicView)
         characteristicView.apply {
@@ -64,7 +62,7 @@ class CharacterFragment : BaseFragment() {
             this?.adapter = characteristicViewAdapter
         }
 
-        abilityViewAdapter = StatAdapter(mCharacter.abilities.values.toTypedArray(), context, characterRepository)
+        abilityViewAdapter = StatAdapter(mCharacter.getAbilities(), context, characterRepository)
         abilityViewManager = LinearLayoutManager(context)
 
         abilityView = view?.findViewById(R.id.abilityView)
@@ -79,14 +77,15 @@ class CharacterFragment : BaseFragment() {
 
     private fun updateCharacter(character: Character) {
         mCharacter = character
-        characteristicViewAdapter.myDataset = mCharacter.characteristics.values.toTypedArray()
-
+        characteristicViewAdapter.myDataset = mCharacter.getCharacteristics()
         characteristicViewAdapter.notifyDataSetChanged()
+        abilityViewAdapter.myDataset = mCharacter.getAbilities()
+        abilityViewAdapter.notifyDataSetChanged()
     }
 
     class StatViewHolder(view: View, val titleView: TextView, val scoreView: TextView, val minusButton: Button, val plusButton: Button, val buttonGroup: Group) : RecyclerView.ViewHolder(view)
 
-    class StatAdapter(var myDataset: Array<Stat>, private val context: Context?, private val charRepo: CharacterRepository) :
+    class StatAdapter(var myDataset: List<Stat>, private val context: Context?, private val charRepo: CharacterRepository) :
             RecyclerView.Adapter<StatViewHolder>() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StatViewHolder {

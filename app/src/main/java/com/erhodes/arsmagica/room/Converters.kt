@@ -8,9 +8,9 @@ import com.erhodes.arsmagica.model.StatEnum
 class Converters {
 
     @TypeConverter
-    fun statsFromString(string: String): HashMap<StatEnum, Stat> {
+    fun statsFromString(string: String): ArrayList<Stat> {
         Log.d("Eric","read in " + string)
-        val result = HashMap<StatEnum, Stat>()
+        val result = ArrayList<Stat>()
 
         for (subString in string.split(",")) {
             Log.d("Eric",subString)
@@ -19,16 +19,16 @@ class Converters {
             val statEnum = StatEnum.valueOf(type)
             Integer.valueOf(score)
             val stat = Stat(statEnum, Integer.valueOf(score))
-            result.put(statEnum, stat)
+            result.add(stat)
         }
 
         return result
     }
 
     @TypeConverter
-    fun stringFromStats(stats: HashMap<StatEnum, Stat>): String {
+    fun stringFromStats(stats: ArrayList<Stat>): String {
         var dataString = ""
-        for (stat in stats.values) {
+        for (stat in stats) {
             dataString += stat.toString() + ","
         }
         // to get rid of the last comma

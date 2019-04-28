@@ -35,6 +35,7 @@
     <string name="cast_failure">Failed! Rolled %d.</string>
 
     <string name="abilities">Abilities</string>
+    <string name="concentration">Concentration</string>
     <string name="finesse">Finesse</string>
     <string name="penetration">Penetration</string>
 

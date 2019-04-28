@@ -4,11 +4,11 @@ class Spell(val name: String, val level: Int, val description: String, val techn
     var mastery: Int = 0
 
     fun getCastingValue(caster: Character): Int {
-        return caster.getCharacteristicValue(StatEnum.STAMINA) + caster.getArtValue(technique) + caster.getArtValue(form) +
+        return caster.getStatScore(StatEnum.STAMINA) + caster.getStatScore(technique) + caster.getStatScore(form) +
             mastery;
     }
 
     fun getPenetrationBonus(caster: Character): Int {
-        return caster.getAbilityValue(StatEnum.PENETRATION)
+        return caster.getStatScore(StatEnum.PENETRATION)
     }
 }

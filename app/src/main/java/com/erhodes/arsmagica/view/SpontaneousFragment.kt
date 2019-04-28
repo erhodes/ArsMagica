@@ -100,8 +100,8 @@ class SpontaneousFragment: BaseFragment(), RadioGroup.OnCheckedChangeListener {
         var mode: Int = 0
 
         public fun getCastTotal(caster: Character): Int {
-            var formScore = caster.getArtValue(form)
-            var techniqueScore = caster.getArtValue(technique)
+            var formScore = caster.getStatScore(form)
+            var techniqueScore = caster.getStatScore(technique)
 
             if (mode == 2) {
                 Log.d("Eric","diedne!" + formScore + " " + techniqueScore);
@@ -111,7 +111,7 @@ class SpontaneousFragment: BaseFragment(), RadioGroup.OnCheckedChangeListener {
                     techniqueScore += techniqueScore
                 }
             }
-            var castingTotal: Int = caster.getCharacteristicValue(StatEnum.STAMINA) + formScore + techniqueScore
+            var castingTotal: Int = caster.getStatScore(StatEnum.STAMINA) + formScore + techniqueScore
 
             when (mode) {
                 0 -> castingTotal/=5

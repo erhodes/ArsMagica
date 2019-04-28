@@ -8,72 +8,37 @@ import androidx.room.PrimaryKey
 class Character {
     @PrimaryKey
     var name: String
-    var characteristics: HashMap<StatEnum, Stat> = HashMap()
-    @Ignore
-    var abilities: HashMap<StatEnum, Stat> = HashMap()
-    @Ignore
-    val arts: HashMap<StatEnum, Stat> = HashMap()
     @Ignore
     val spells: ArrayList<Spell> = ArrayList()
+
+    var stats: ArrayList<Stat> = ArrayList()
 
     constructor(name: String) {
         this.name = name;
 
-        addCharacteristic(StatEnum.STRENGTH, 1)
-        addCharacteristic(StatEnum.DEXTERITY, 2)
-        addCharacteristic(StatEnum.QUICKNESS, 3)
-        addCharacteristic(StatEnum.STAMINA, 3)
-        addCharacteristic(StatEnum.COMMUNICATION, -1)
-        addCharacteristic(StatEnum.INTELLIGENCE, 3)
-        addCharacteristic(StatEnum.PERCEPTION, 2)
-        addCharacteristic(StatEnum.PRESENCE, 2)
-
-        addAbility(StatEnum.PENETRATION, 2)
-
-        addArt(StatEnum.CREO, 10)
-        addArt(StatEnum.INTELLEGO, 20)
-        addArt(StatEnum.MUTO, 5)
-        addArt(StatEnum.PERDO, 15)
-        addArt(StatEnum.REGO, 10)
-
-        addArt(StatEnum.ANIMAL, 5)
-        addArt(StatEnum.AQUAM, 5)
-        addArt(StatEnum.AURAM, 5)
-        addArt(StatEnum.CORPUS, 5)
-        addArt(StatEnum.HERBAM, 5)
-        addArt(StatEnum.IGNEM, 5)
-        addArt(StatEnum.IMAGINEM, 5)
-        addArt(StatEnum.MENTEM, 5)
-        addArt(StatEnum.TERRAM, 5)
-        addArt(StatEnum.VIM, 5)
+        for (item in StatEnum.values()) {
+            addStat(item, 1)
+        }
 
         addSpell(Spell("Unseen Porter", 10, "Levitate something", StatEnum.REGO, StatEnum.TERRAM))
         addSpell(Spell("Firebolt", 15, "Fire spell that deals +10 damage at voice range", StatEnum.CREO, StatEnum.IGNEM))
     }
 
-    fun getArtValue(art: StatEnum): Int {
-        return arts[art]?.score ?: 0
+    fun addStat(type: StatEnum, score: Int) {
+        stats.add(type.ordinal, Stat(type, score))
     }
 
-    fun addArt(type: StatEnum, score: Int) {
-        arts[type] = Stat(type, score)
+    fun addStat(stat: Stat) {
+        stats[stat.type.ordinal] = stat
     }
 
-    private fun addCharacteristic(type: StatEnum, score: Int) {
-        characteristics[type] = Stat(type, score)
-    }
+    fun getCharacteristics(): List<Stat> = stats.subList(StatEnum.STRENGTH.ordinal, StatEnum.PRESENCE.ordinal+1)
 
-    fun getCharacteristicValue(attribute: StatEnum): Int {
-        return characteristics[attribute]?.score ?: 0
-    }
+    fun getArts(): List<Stat> = stats.subList(StatEnum.CREO.ordinal, StatEnum.VIM.ordinal+1)
 
-    fun addAbility(type: StatEnum, score: Int) {
-        abilities[type] = Stat(type, score)
-    }
+    fun getAbilities(): List<Stat> = stats.subList(StatEnum.FINESSE.ordinal, StatEnum.PENETRATION.ordinal+1)
 
-    fun getAbilityValue(ability: StatEnum): Int {
-        return abilities[ability]?.score ?: 0
-    }
+    fun getStatScore(stat: StatEnum): Int = stats[stat.ordinal].score
 
     fun addSpell(spell: Spell) {
         spells.add(spell)

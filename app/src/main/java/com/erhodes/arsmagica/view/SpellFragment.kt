@@ -56,10 +56,10 @@ class SpellFragment : BaseFragment() {
 
         val castSummaryView = view?.findViewById<TextView>(R.id.summaryView)
         castSummaryView?.text = getString(R.string.spell_total_summary, getString(spell.technique.resourceId),
-                character.getArtValue(spell.technique),
+                character.getStatScore(spell.technique),
                 getString(spell.form.resourceId),
-                character.getArtValue(spell.form),
-                character.getCharacteristicValue(StatEnum.STAMINA))
+                character.getStatScore(spell.form),
+                character.getStatScore(StatEnum.STAMINA))
 
         val fastcastBox: CheckBox? = view?.findViewById(R.id.checkBox)
         fastcastBox?.setOnCheckedChangeListener {

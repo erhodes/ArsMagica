@@ -2,6 +2,9 @@ package com.erhodes.arsmagica.model
 
 import com.erhodes.arsmagica.R
 
+/**
+ * The ordering here is important, since the ordinals are used to define which range of these are arts, abilities, etc
+ */
 enum class StatEnum(val resourceId: Int) {
     STRENGTH(R.string.strength),
     DEXTERITY(R.string.dexterity),
@@ -12,6 +15,7 @@ enum class StatEnum(val resourceId: Int) {
     COMMUNICATION(R.string.communication),
     PRESENCE(R.string.presence),
 
+    CONCENTRATION(R.string.concentration),
     FINESSE(R.string.finesse),
     PENETRATION(R.string.penetration),
 
