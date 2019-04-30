@@ -33,6 +33,18 @@ enum class StatEnum(val resourceId: Int) {
     IMAGINEM(R.string.imaginem),
     MENTEM(R.string.mentem),
     TERRAM(R.string.terram),
-    VIM(R.string.vim)
+    VIM(R.string.vim);
 
+    companion object {
+        fun asList(vararg stats: StatEnum): List<StatEnum> {
+            val list = ArrayList<StatEnum>()
+            list.addAll(stats)
+            return list
+        }
+        fun asSet(vararg stats: StatEnum): MutableSet<StatEnum> {
+            val set = HashSet<StatEnum>()
+            set.addAll(stats)
+            return set
+        }
+    }
 }

@@ -9,7 +9,7 @@ class Character {
     @PrimaryKey
     var name: String
     @Ignore
-    val spells: ArrayList<Spell> = ArrayList()
+    val spells: ArrayList<FormulaicSpell> = ArrayList()
 
     var stats: ArrayList<Stat> = ArrayList()
 
@@ -20,8 +20,8 @@ class Character {
             addStat(item, 1)
         }
 
-        addSpell(Spell("Unseen Porter", 10, "Levitate something", StatEnum.REGO, StatEnum.TERRAM))
-        addSpell(Spell("Firebolt", 15, "Fire spell that deals +10 damage at voice range", StatEnum.CREO, StatEnum.IGNEM))
+        addSpell(FormulaicSpell("Unseen Porter", 10, "Levitate something", StatEnum.REGO, StatEnum.TERRAM))
+        addSpell(FormulaicSpell("Firebolt", 15, "Fire spell that deals +10 damage at voice range", StatEnum.CREO, StatEnum.IGNEM))
     }
 
     fun addStat(type: StatEnum, score: Int) {
@@ -40,7 +40,7 @@ class Character {
 
     fun getStatScore(stat: StatEnum): Int = stats[stat.ordinal].score
 
-    fun addSpell(spell: Spell) {
+    fun addSpell(spell: FormulaicSpell) {
         spells.add(spell)
     }
 }

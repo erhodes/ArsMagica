@@ -10,17 +10,14 @@ import android.widget.CheckBox
 import android.widget.TextView
 import com.erhodes.arsmagica.ArsMagicaApplication
 import com.erhodes.arsmagica.R
-import com.erhodes.arsmagica.model.Character
-import com.erhodes.arsmagica.model.CharacterRepository
-import com.erhodes.arsmagica.model.Spell
-import com.erhodes.arsmagica.model.StatEnum
+import com.erhodes.arsmagica.model.*
 import javax.inject.Inject
 
 class SpellFragment : BaseFragment() {
 
     @Inject lateinit var characterRepository: CharacterRepository
     private lateinit var character: Character
-    private lateinit var spell: Spell
+    private lateinit var spell: FormulaicSpell
     private var resultView: TextView? = null
     private var castButton: Button? = null
     private var castPenalty: Int = 0
@@ -55,11 +52,12 @@ class SpellFragment : BaseFragment() {
         descriptionView?.text = spell.description
 
         val castSummaryView = view?.findViewById<TextView>(R.id.summaryView)
-        castSummaryView?.text = getString(R.string.spell_total_summary, getString(spell.technique.resourceId),
-                character.getStatScore(spell.technique),
-                getString(spell.form.resourceId),
-                character.getStatScore(spell.form),
-                character.getStatScore(StatEnum.STAMINA))
+        castSummaryView?.text = "bla bla bla"
+//        castSummaryView?.text = getString(R.string.spell_total_summary, getString(spell.technique.resourceId),
+//                character.getStatScore(spell.technique),
+//                getString(spell.form.resourceId),
+//                character.getStatScore(spell.form),
+//                character.getStatScore(StatEnum.STAMINA))
 
         val fastcastBox: CheckBox? = view?.findViewById(R.id.checkBox)
         fastcastBox?.setOnCheckedChangeListener {

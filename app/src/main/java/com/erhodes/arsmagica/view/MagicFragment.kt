@@ -15,10 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.erhodes.arsmagica.ArsMagicaApplication
 import com.erhodes.arsmagica.MainActivity
 import com.erhodes.arsmagica.R
-import com.erhodes.arsmagica.model.Art
-import com.erhodes.arsmagica.model.Character
-import com.erhodes.arsmagica.model.CharacterRepository
-import com.erhodes.arsmagica.model.Spell
+import com.erhodes.arsmagica.model.*
 import java.lang.IllegalArgumentException
 import javax.inject.Inject
 
@@ -93,7 +90,7 @@ class MagicFragment: BaseFragment() {
 
     class SpellViewHolder(view: View, val titleView: TextView, val scoreView: TextView) : RecyclerView.ViewHolder(view)
 
-    class SpellAdapter(private val dataset: ArrayList<Spell>, val listener: (Int) -> Unit) :
+    class SpellAdapter(private val dataset: ArrayList<FormulaicSpell>, val listener: (Int) -> Unit) :
             RecyclerView.Adapter<SpellViewHolder>() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SpellViewHolder {

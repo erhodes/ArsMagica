@@ -16,40 +16,42 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <RadioGroup
+    <LinearLayout
         android:id="@+id/techniqueGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:checkedButton="@id/creo"
         android:layout_marginStart="8dp"
+        android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" >
-        <RadioButton
+        <CheckBox
             android:id="@+id/creo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:checked="true"
             android:text="@string/creo" />
-        <RadioButton
+        <CheckBox
             android:id="@+id/intellego"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/intellego" />
-        <RadioButton
+        <CheckBox
             android:id="@+id/muto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/muto" />
-        <RadioButton
+        <CheckBox
             android:id="@+id/perdo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/perdo" />
-        <RadioButton
+        <CheckBox
             android:id="@+id/rego"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/rego" />
-    </RadioGroup>
+    </LinearLayout>
 
     <TextView
         android:id="@+id/summaryView"
@@ -63,65 +65,67 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/techniqueGroup" />
 
-    <RadioGroup
+    <LinearLayout
         android:id="@+id/formGroup"
         android:checkedButton="@id/animal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
+        android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" >
-        <RadioButton
+        <CheckBox
             android:id="@+id/animal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:checked="true"
             android:text="@string/animal" />
-        <RadioButton
+        <CheckBox
             android:id="@+id/aquam"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/aquam" />
-        <RadioButton
+        <CheckBox
             android:id="@+id/auram"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/auram" />
-        <RadioButton
+        <CheckBox
             android:id="@+id/corpus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/corpus" />
-        <RadioButton
+        <CheckBox
             android:id="@+id/herbam"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/herbam" />
-        <RadioButton
+        <CheckBox
             android:id="@+id/ignem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/ignem" />
-        <RadioButton
+        <CheckBox
             android:id="@+id/imaginem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/imaginem" />
-        <RadioButton
+        <CheckBox
             android:id="@+id/mentem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/mentem" />
-        <RadioButton
+        <CheckBox
             android:id="@+id/terram"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/terram" />
-        <RadioButton
+        <CheckBox
             android:id="@+id/vim"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/vim" />
-    </RadioGroup>
+    </LinearLayout>
 
     <TextView
         android:id="@+id/textView2"

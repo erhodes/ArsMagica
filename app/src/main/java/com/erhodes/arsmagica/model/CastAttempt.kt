@@ -1,15 +1,53 @@
 package com.erhodes.arsmagica.model
 
-class CastAttempt {
-    public lateinit var technique: StatEnum
-    public lateinit var form: StatEnum
-    public var fastCast: Boolean = false
+class CastAttempt(val spell: Spell) {
+    var fastCast: Boolean = false
 
     /**
-     * If this attempt is for a forumlaic spell, pass it in here
+     * Get the current cast total for this attempt
      */
-    public fun setSpell(spell: Spell) {
-        technique = spell.technique
-        form = spell.form
+    fun getCastTotal(caster: Character): Int {
+
+        var castingTotal = spell.getCastingValue(caster)
+
+        if (fastCast) {
+            castingTotal-=10
+        }
+
+        return castingTotal
+    }
+
+    fun cast(caster: Character): Int {
+        var roll = roll()
+        if (roll == 0) {
+            return -spell.getCastingValue(caster)
+        } else {
+            if (spell is SpontaneousSpell) {
+                when (spell.mode) {
+                    SpontaneousSpell.Mode.SPONTANEOUS -> roll = roll/5
+                    SpontaneousSpell.Mode.FATIGUED, SpontaneousSpell.Mode.DIEDNE -> roll = roll/2
+                }
+            }
+            return roll + spell.getCastingValue(caster)
+        }
+    }
+
+    private fun roll(): Int {
+        var roll = (0..9).shuffled().first()
+        when (roll) {
+            1 -> roll+=stresslessRoll()
+        }
+        if (roll == 1) {
+            roll+=stresslessRoll()
+        }
+        return roll
+    }
+
+    private fun stresslessRoll(): Int {
+        var roll = (1..10).shuffled().first()
+        if (roll == 1) {
+            roll+=stresslessRoll()
+        }
+        return roll
     }
 }
