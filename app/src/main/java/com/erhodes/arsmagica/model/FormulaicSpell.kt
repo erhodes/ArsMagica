@@ -8,7 +8,8 @@ class FormulaicSpell(val name: String, level: Int, val description: String, tech
         val techniqueScore = getLowestScore(techniques, caster)
         val formScore = getLowestScore(forms, caster)
 
-        return techniqueScore + formScore + caster.getStatScore(StatEnum.STAMINA) + mastery
+        return techniqueScore + formScore + caster.getStatScore(StatEnum.STAMINA) + mastery +
+                caster.getStatScore(StatEnum.TALISMAN) + caster.getStatScore(StatEnum.MISC)
     }
 
 }

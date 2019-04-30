@@ -44,15 +44,22 @@ class CharacterRepository {
         return mCharacter
     }
 
-    public fun increaseStat(stat: Stat) {
+    fun increaseStat(stat: Stat) {
         mCharacter.stats[stat.type.ordinal].score++
         characterLiveData.postValue(mCharacter)
         saveCharacter(mCharacter)
     }
 
-    public fun decreaseStat(stat: Stat) {
-        stat.score--
+    fun decreaseStat(stat: Stat) {
+        mCharacter.stats[stat.type.ordinal].score--
         characterLiveData.postValue(mCharacter)
+        saveCharacter(mCharacter)
+    }
+
+    fun setStat(stat: StatEnum, value: Int) {
+        mCharacter.stats[stat.ordinal].score = value
+        characterLiveData.postValue(mCharacter)
+        saveCharacter(mCharacter)
     }
 
     fun saveCharacter(character: Character) {

@@ -1,6 +1,6 @@
 package com.erhodes.arsmagica.model
 
-open class Spell(val level: Int, val techniques: MutableSet<StatEnum>, val forms: MutableSet<StatEnum>) {
+abstract class Spell(val level: Int, val techniques: MutableSet<StatEnum>, val forms: MutableSet<StatEnum>) {
     constructor(level: Int, technique: StatEnum, form: StatEnum): this(level, StatEnum.asSet(technique), StatEnum.asSet(form))
 
     fun toggleForm(art: StatEnum, included: Boolean) {
@@ -30,11 +30,7 @@ open class Spell(val level: Int, val techniques: MutableSet<StatEnum>, val forms
         return result
     }
 
-    open fun getCastingValue(caster: Character): Int {
-//        return caster.getStatScore(StatEnum.STAMINA) + caster.getStatScore(technique) + caster.getStatScore(form) +
-//            mastery;
-        return 1
-    }
+    abstract fun getCastingValue(caster: Character): Int
 
     fun getPenetrationBonus(caster: Character): Int {
         return caster.getStatScore(StatEnum.PENETRATION)

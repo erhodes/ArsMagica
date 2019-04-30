@@ -2,21 +2,20 @@ package com.erhodes.arsmagica.view
 
 import android.content.Context
 import android.os.Bundle
-import android.support.constraint.Group
-import android.util.Log
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.erhodes.arsmagica.ArsMagicaApplication
-import com.erhodes.arsmagica.MainActivity
 import com.erhodes.arsmagica.R
 import com.erhodes.arsmagica.model.*
-import java.lang.IllegalArgumentException
 import javax.inject.Inject
 
 class MagicFragment: BaseFragment() {
@@ -78,7 +77,6 @@ class MagicFragment: BaseFragment() {
             this?.layoutManager = spellViewManager
             this?.adapter = spellViewAdapter
         }
-
         return view;
     }
 

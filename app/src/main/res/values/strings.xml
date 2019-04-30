@@ -40,6 +40,9 @@
     <string name="penetration">Penetration</string>
 
     <string name="magic">Magic</string>
+    <string name="talisman">Talisman</string>
+    <string name="misc">Miscellaneous</string>
+
     <string name="arts">Arts</string>
 
     <string name="technique">Technique</string>

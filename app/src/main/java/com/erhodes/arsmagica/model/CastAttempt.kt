@@ -28,8 +28,8 @@ class CastAttempt(val spell: Spell) {
                     SpontaneousSpell.Mode.FATIGUED, SpontaneousSpell.Mode.DIEDNE -> roll = roll/2
                 }
             }
-            return roll + spell.getCastingValue(caster)
         }
+        return roll + spell.getCastingValue(caster)
     }
 
     private fun roll(): Int {

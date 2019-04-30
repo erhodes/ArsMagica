@@ -5,17 +5,13 @@ import androidx.room.Ignore
 import androidx.room.PrimaryKey
 
 @Entity
-class Character {
-    @PrimaryKey
-    var name: String
+class Character(@PrimaryKey val name: String) {
     @Ignore
     val spells: ArrayList<FormulaicSpell> = ArrayList()
 
     var stats: ArrayList<Stat> = ArrayList()
 
-    constructor(name: String) {
-        this.name = name;
-
+    init {
         for (item in StatEnum.values()) {
             addStat(item, 1)
         }
@@ -34,7 +30,8 @@ class Character {
 
     fun getCharacteristics(): List<Stat> = stats.subList(StatEnum.STRENGTH.ordinal, StatEnum.PRESENCE.ordinal+1)
 
-    fun getArts(): List<Stat> = stats.subList(StatEnum.CREO.ordinal, StatEnum.VIM.ordinal+1)
+    //todo a proper way to handle talisman and misc
+    fun getArts(): List<Stat> = stats.subList(StatEnum.CREO.ordinal, StatEnum.MISC.ordinal+1)
 
     fun getAbilities(): List<Stat> = stats.subList(StatEnum.FINESSE.ordinal, StatEnum.PENETRATION.ordinal+1)
 

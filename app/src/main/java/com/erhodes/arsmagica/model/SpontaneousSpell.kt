@@ -18,7 +18,8 @@ class SpontaneousSpell(level: Int, form: StatEnum, technique: StatEnum) : Spell(
                 techniqueScore += techniqueScore
             }
         }
-        var castingTotal: Int = caster.getStatScore(StatEnum.STAMINA) + formScore + techniqueScore
+        var castingTotal: Int = caster.getStatScore(StatEnum.STAMINA) + formScore + techniqueScore +
+                caster.getStatScore(StatEnum.TALISMAN) + caster.getStatScore(StatEnum.MISC)
         when (mode) {
             Mode.SPONTANEOUS -> castingTotal/=5
             Mode.FATIGUED -> castingTotal/=2
